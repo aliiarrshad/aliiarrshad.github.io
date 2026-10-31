@@ -211,6 +211,18 @@ h1 span { color: var(--accent); }
   border-radius: 50%;
   background: var(--muted);
 }
+.chip[data-k="about"] {
+  padding: 16px 32px 18px;
+  border-width: 1.5px;
+}
+.chip[data-k="about"] b {
+  font-size: min(calc(var(--fs) * 1.18), 34px);
+  letter-spacing: -0.025em;
+}
+.chip[data-k="about"] small {
+  font-size: 11.5px;
+  font-weight: 600;
+}
 .chip b {
   display: block;
   font-family: var(--font-display);
@@ -222,15 +234,16 @@ h1 span { color: var(--accent); }
 }
 
 .stage { position: relative; height: 780px; margin-top: 14px; }
-.n1 { --x: 18%; --y: 12%; --fs: 34px; }
-.n2 { --x: 52%; --y: 13%; --fs: 30px; }
-.n3 { --x: 82%; --y: 16%; --fs: 30px; }
-.n4 { --x: 22%; --y: 43%; --fs: 32px; }
-.n5 { --x: 54%; --y: 42%; --fs: 30px; }
-.n6 { --x: 84%; --y: 46%; --fs: 30px; }
-.n7 { --x: 18%; --y: 76%; --fs: 30px; }
-.n8 { --x: 52%; --y: 77%; --fs: 30px; }
-.n9 { --x: 82%; --y: 80%; --fs: 32px; }
+/* About me is the centerpiece in the center of the stage, larger than the rest */
+.n1 { --x: 50%; --y: 45%; --fs: 34px; }
+.n2 { --x: 22%; --y: 16%; --fs: 30px; }
+.n3 { --x: 50%; --y: 15%; --fs: 30px; }
+.n4 { --x: 78%; --y: 18%; --fs: 31px; }
+.n5 { --x: 18%; --y: 46%; --fs: 30px; }
+.n6 { --x: 82%; --y: 46%; --fs: 30px; }
+.n7 { --x: 22%; --y: 76%; --fs: 30px; }
+.n8 { --x: 50%; --y: 78%; --fs: 30px; }
+.n9 { --x: 78%; --y: 76%; --fs: 31px; }
 
 .stagefoot { display: flex; align-items: center; justify-content: flex-end; margin-top: 4px; gap: 8px; }
 .foot-sep { font-family: var(--font-mono); font-size: 12px; color: var(--edge); user-select: none; }
@@ -570,15 +583,15 @@ h1 span { color: var(--accent); }
   .node { max-width: 78%; }
   .chip { padding: 11px 20px 12px; }
   .chip b { font-size: min(var(--fs), 25px); }
-  .n1 { --x: 34%; --y: 6%; }
-  .n2 { --x: 62%; --y: 17%; }
-  .n3 { --x: 36%; --y: 28%; }
-  .n4 { --x: 62%; --y: 39%; }
-  .n5 { --x: 36%; --y: 50%; }
-  .n6 { --x: 62%; --y: 61%; }
-  .n7 { --x: 36%; --y: 72%; }
-  .n8 { --x: 62%; --y: 83%; }
-  .n9 { --x: 36%; --y: 94%; }
+  .n1 { --x: 50%; --y: 48%; --fs: 28px; }
+  .n2 { --x: 32%; --y: 8%; }
+  .n3 { --x: 68%; --y: 18%; }
+  .n4 { --x: 30%; --y: 28%; }
+  .n5 { --x: 70%; --y: 38%; }
+  .n6 { --x: 30%; --y: 60%; }
+  .n7 { --x: 70%; --y: 70%; }
+  .n8 { --x: 32%; --y: 82%; }
+  .n9 { --x: 68%; --y: 92%; }
   .detail-page .rows li {
     grid-template-columns: 1fr;
     gap: 0;
