@@ -35,22 +35,6 @@ html, body { margin: 0; overflow-x: hidden; }
   --font-body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #101F19; --ink: #F2FBF4; --muted: #BFD6C9; --rule: #213A30; --margin: #84504F; --edge: #2F4A3F;
-    --chip: #183029; --accent: #E9B949; --accent-soft: #3A3014; --wash-hi: rgba(120, 170, 140, 0.10); --wash-lo: rgba(0, 0, 0, 0.35);
-    --lift: rgba(0, 0, 0, 0.6); --scrim: rgba(2, 8, 5, 0.7);
-    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .92 0 0 0 0 .85 0 0 0 .8 -.4'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #101F19; --ink: #F2FBF4; --muted: #BFD6C9; --rule: #213A30; --margin: #84504F; --edge: #2F4A3F;
-  --chip: #183029; --accent: #E9B949; --accent-soft: #3A3014; --wash-hi: rgba(120, 170, 140, 0.10); --wash-lo: rgba(0, 0, 0, 0.35);
-  --lift: rgba(0, 0, 0, 0.6); --scrim: rgba(2, 8, 5, 0.7);
-  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .92 0 0 0 0 .85 0 0 0 .8 -.4'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
-  color-scheme: dark;
-}
 
 * { box-sizing: border-box; }
 body {
@@ -113,10 +97,6 @@ body {
   box-shadow: 0 0 0 2px rgba(46, 139, 87, 0.2);
   display: inline-block;
 }
-:root[data-theme="dark"] .badge-status .dot {
-  background-color: #4ade80;
-  box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.25);
-}
 h1 {
   font-family: var(--font-display);
   font-weight: 800;
@@ -164,11 +144,6 @@ h1 span { color: var(--accent); }
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 20px 36px -10px var(--lift), 0 0 0 4px rgba(138, 94, 0, 0.12);
   transform: scale(1.025);
 }
-:root[data-theme="dark"] .chip.is-grabbed,
-:root[data-theme="dark"] .chip:focus-visible {
-  outline: 2px solid var(--accent);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 20px 36px -10px var(--lift), 0 0 0 4px rgba(233, 185, 73, 0.16);
-}
 .node.is-dragging {
   z-index: 50 !important;
 }
@@ -190,9 +165,6 @@ h1 span { color: var(--accent); }
   height: 5px;
   border-radius: 50%;
   background: #3B7A57;
-}
-:root[data-theme="dark"] .chip[data-k="tax"] small::before {
-  background: #52b788;
 }
 .chip[data-k="dcf"] small::before {
   content: "";
@@ -246,7 +218,6 @@ h1 span { color: var(--accent); }
 .n9 { --x: 78%; --y: 76%; --fs: 31px; }
 
 .stagefoot { display: flex; align-items: center; justify-content: flex-end; margin-top: 4px; gap: 8px; }
-.foot-sep { font-family: var(--font-mono); font-size: 12px; color: var(--edge); user-select: none; }
 .motion {
   font-family: var(--font-mono); font-size: 12px;
   color: var(--muted); background: none; cursor: pointer;
@@ -577,21 +548,82 @@ h1 span { color: var(--accent); }
       var(--grain),
       repeating-linear-gradient(to bottom, transparent 0, transparent 39px, var(--rule) 39px, var(--rule) 40px);
   }
-  .wrap { padding-left: 30px; }
-  .wrap::before { left: 8px; }
-  .stage { height: 940px; }
-  .node { max-width: 78%; }
-  .chip { padding: 11px 20px 12px; }
-  .chip b { font-size: min(var(--fs), 25px); }
-  .n1 { --x: 50%; --y: 48%; --fs: 28px; }
-  .n2 { --x: 32%; --y: 8%; }
-  .n3 { --x: 68%; --y: 18%; }
-  .n4 { --x: 30%; --y: 28%; }
-  .n5 { --x: 70%; --y: 38%; }
-  .n6 { --x: 30%; --y: 60%; }
-  .n7 { --x: 70%; --y: 70%; }
-  .n8 { --x: 32%; --y: 82%; }
-  .n9 { --x: 68%; --y: 92%; }
+  .wrap { padding-left: 20px; }
+  .wrap::before { left: 6px; }
+  .top { gap: 10px; padding-bottom: 4px; }
+  .eyebrow-row { gap: 6px 12px; }
+  .eyebrow { font-size: 11px; }
+  .badge-status { font-size: 10px; padding: 2px 8px; }
+  h1 { font-size: clamp(52px, 13vw, 72px); }
+  .tag { font-size: 16px; max-width: 100%; }
+  .hint { font-size: 11px; }
+
+  /* Stage: 2D constellation height tailored to phone screens */
+  .stage {
+    height: clamp(480px, 66vh, 540px);
+    margin-top: 10px;
+  }
+  .node { max-width: 50%; }
+
+  .chip {
+    padding: 7px 12px 8px;
+    border-radius: 14px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 8px 16px -6px var(--lift);
+  }
+  .chip small {
+    font-size: 9.5px;
+    gap: 4px;
+    margin-bottom: 1px;
+    letter-spacing: 0.04em;
+  }
+  .chip small::before {
+    width: 4px;
+    height: 4px;
+  }
+  .chip b {
+    font-size: min(var(--fs), 15px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+  }
+
+  /* Centerpiece: About me stands out in the center of the mobile constellation */
+  .chip[data-k="about"] {
+    padding: 10px 18px 11px;
+    border-radius: 16px;
+    border-width: 1.5px;
+  }
+  .chip[data-k="about"] b {
+    font-size: min(calc(var(--fs) * 1.25), 18px);
+    letter-spacing: -0.02em;
+  }
+  .chip[data-k="about"] small {
+    font-size: 10.5px;
+  }
+
+  /* 2D Balanced Constellation on mobile */
+  /* Centerpiece */
+  .n1 { --x: 50%; --y: 50%; --fs: 18px; }
+
+  /* Top tier */
+  .n2 { --x: 27%; --y: 14%; --fs: 14px; }
+  .n3 { --x: 73%; --y: 15%; --fs: 14px; }
+
+  /* Mid-upper flank */
+  .n4 { --x: 20%; --y: 33%; --fs: 14.5px; }
+  .n5 { --x: 80%; --y: 32%; --fs: 14px; }
+
+  /* Mid-lower flank */
+  .n6 { --x: 22%; --y: 67%; --fs: 14px; }
+  .n7 { --x: 78%; --y: 68%; --fs: 14px; }
+
+  /* Bottom tier */
+  .n8 { --x: 27%; --y: 86%; --fs: 14px; }
+  .n9 { --x: 73%; --y: 87%; --fs: 14px; }
+
+  .stagefoot { margin-top: 6px; }
+  .foot { margin-top: 14px; gap: 8px 18px; }
+  .foot p { font-size: 13px; }
+
   .detail-page .rows li {
     grid-template-columns: 1fr;
     gap: 0;
@@ -601,13 +633,13 @@ h1 span { color: var(--accent); }
     height: auto;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
   .page-bottombar {
     height: auto;
     flex-direction: row;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 30px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -655,8 +687,6 @@ h1 span { color: var(--accent); }
       <div class="node n9"><button class="chip" data-k="tools"><small>Toolkit</small><b>What I work with</b></button></div>
     </main>
     <div class="stagefoot">
-      <button type="button" id="theme-toggle" class="motion" aria-label="Toggle dark or light theme">Dark mode</button>
-      <span class="foot-sep" aria-hidden="true">·</span>
       <button type="button" id="motion" class="motion" aria-pressed="true">Pause swimming</button>
     </div>
 
@@ -960,7 +990,7 @@ h1 span { color: var(--accent); }
     nodes.forEach(function (n) { n.style.left = ""; n.style.top = ""; n.style.transform = ""; n.style.width = ""; n.style.maxWidth = ""; });
     var sr = stage.getBoundingClientRect();
     W = sr.width; H = sr.height;
-    var slow = small() ? 0.6 : 1;
+    var slow = small() ? 0.8 : 1;
     var starts = nodes.map(function (n) { var r = n.getBoundingClientRect(); return { x: r.left - sr.left, y: r.top - sr.top }; });
     nodes.forEach(function (n) { n.style.left = "0px"; n.style.top = "0px"; n.style.transform = "none"; });
     fish = nodes.map(function (n, i) {
@@ -1089,8 +1119,8 @@ h1 span { color: var(--accent); }
     prev = ts;
     if (isPageOpen) { requestAnimationFrame(step); return; }
     clock += dt;
-    var mx = small() ? 30 : 110, my = small() ? 36 : 70;
-    var slow = small() ? 0.6 : 1;
+    var mx = small() ? 12 : 110, my = small() ? 14 : 70;
+    var slow = small() ? 0.8 : 1;
 
     fish.forEach(function (f, i) {
       if (f.hold || f.dragging) return;
@@ -1116,7 +1146,7 @@ h1 span { color: var(--accent); }
       fish.forEach(function (g, j) {
         if (i === j) return;
         var ox = cx - (g.x + g.w / 2), oy = cy - (g.y + g.h / 2);
-        var nx = (f.w + g.w) / 2 + 36, ny = (f.h + g.h) / 2 + 28;
+        var nx = (f.w + g.w) / 2 + (small() ? 10 : 36), ny = (f.h + g.h) / 2 + (small() ? 8 : 28);
         if (Math.abs(ox) < nx && Math.abs(oy) < ny) {
           var s = 1 - Math.max(Math.abs(ox) / nx, Math.abs(oy) / ny);
           var m = Math.hypot(ox, oy) || 1;
@@ -1172,7 +1202,7 @@ h1 span { color: var(--accent); }
 
     for (var a = 0; a < fish.length; a++) {
       for (var b = a + 1; b < fish.length; b++) {
-        var p = fish[a], q = fish[b], pad = 10;
+        var p = fish[a], q = fish[b], pad = small() ? 4 : 10;
         var ox = Math.min(p.x + p.w, q.x + q.w) - Math.max(p.x, q.x) + pad;
         var oy = Math.min(p.y + p.h, q.y + q.h) - Math.max(p.y, q.y) + pad;
         if (ox > 0 && oy > 0) {
@@ -1216,49 +1246,8 @@ h1 span { color: var(--accent); }
     if (motionOn) run();
   });
 
-  /* ---------- Theme toggle ---------- */
-  var themeBtn = document.getElementById("theme-toggle");
-  function getPreferredTheme() {
-    try {
-      var saved = localStorage.getItem("portfolio-theme");
-      if (saved === "dark" || saved === "light") return saved;
-    } catch (e) {}
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  }
-
-  function applyTheme(theme, save) {
-    if (theme === "dark") {
-      document.documentElement.setAttribute("data-theme", "dark");
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
-    }
-    if (save) {
-      try { localStorage.setItem("portfolio-theme", theme); } catch (e) {}
-    }
-    if (themeBtn) {
-      themeBtn.textContent = theme === "dark" ? "Light mode" : "Dark mode";
-    }
-  }
-
-  var currentTheme = getPreferredTheme();
-  applyTheme(currentTheme, false);
-
-  if (themeBtn) {
-    themeBtn.addEventListener("click", function () {
-      var activeTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      applyTheme(activeTheme, true);
-    });
-  }
-
-  if (window.matchMedia) {
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (e) {
-      try {
-        if (!localStorage.getItem("portfolio-theme")) {
-          applyTheme(e.matches ? "dark" : "light", false);
-        }
-      } catch (err) {}
-    });
-  }
+  try { localStorage.removeItem("portfolio-theme"); } catch (e) {}
+  document.documentElement.removeAttribute("data-theme");
 
   function start() { setup(); paintMotion(); run(); }
 
