@@ -5,21 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Ali, Accounting and Finance student at NUST Islamabad. Finance models, Python projects and sponsorship results.">
 <title>ali's portfolio</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-html, body { margin: 0; }
+html, body { margin: 0; overflow-x: hidden; }
 [hidden] { display: none !important; }
 /* Layout concept: a page from an accounting pad. Green ruled lines, a double red margin rule,
    paper grain. The work headings swim across it like fish; clicking one opens its page of detail. */
 :root {
   --bg: #F1F0E2;
-  --ink: #13281F;
-  --muted: #56655A;
+  --ink: #0E1D16;
+  --muted: #26382E;
   --rule: #BFD5C5;
   --margin: #D98C8C;
-  --edge: #B4BCA8;
+  --edge: #A8B49B;
   --chip: #FBFBF4;
   --accent: #8A5E00;
   --accent-soft: #F3E6BE;
@@ -34,7 +37,7 @@ html, body { margin: 0; }
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #101F19; --ink: #E6F0E4; --muted: #93AA9B; --rule: #213A30; --margin: #84504F; --edge: #2F4A3F;
+    --bg: #101F19; --ink: #F2FBF4; --muted: #BFD6C9; --rule: #213A30; --margin: #84504F; --edge: #2F4A3F;
     --chip: #183029; --accent: #E9B949; --accent-soft: #3A3014; --wash-hi: rgba(120, 170, 140, 0.10); --wash-lo: rgba(0, 0, 0, 0.35);
     --lift: rgba(0, 0, 0, 0.6); --scrim: rgba(2, 8, 5, 0.7);
     --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .92 0 0 0 0 .85 0 0 0 .8 -.4'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
@@ -42,7 +45,7 @@ html, body { margin: 0; }
   }
 }
 :root[data-theme="dark"] {
-  --bg: #101F19; --ink: #E6F0E4; --muted: #93AA9B; --rule: #213A30; --margin: #84504F; --edge: #2F4A3F;
+  --bg: #101F19; --ink: #F2FBF4; --muted: #BFD6C9; --rule: #213A30; --margin: #84504F; --edge: #2F4A3F;
   --chip: #183029; --accent: #E9B949; --accent-soft: #3A3014; --wash-hi: rgba(120, 170, 140, 0.10); --wash-lo: rgba(0, 0, 0, 0.35);
   --lift: rgba(0, 0, 0, 0.6); --scrim: rgba(2, 8, 5, 0.7);
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .92 0 0 0 0 .85 0 0 0 .8 -.4'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
@@ -58,13 +61,13 @@ body {
     var(--grain),
     repeating-linear-gradient(to bottom, transparent 0, transparent 39px, var(--rule) 39px, var(--rule) 40px);
   background-size: 100% 100%, 100% 100%, 240px 240px, auto;
-  background-position: 0 0, 0 0, 0 0, 0 24px;
+  background-position: 0 0, 0 0, 0 0, 0 0;
   background-attachment: fixed, fixed, scroll, scroll;
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.55;
-  padding-block: 28px 36px;
+  line-height: 40px;
+  padding-block: 40px 40px;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
@@ -73,7 +76,12 @@ body {
 .wrap::before {
   content: "";
   position: absolute;
-  left: 18px; top: -28px; bottom: -36px;
+  left: 18px; top: -40px; bottom: -40px;
+  width: 5px;
+  border-left: 1px solid var(--margin);
+  border-right: 1px solid var(--margin);
+  pointer-events: none;
+}
   width: 5px;
   border-left: 1px solid var(--margin);
   border-right: 1px solid var(--margin);
@@ -82,7 +90,33 @@ body {
 
 /* Header */
 .top { display: grid; gap: 14px; padding-bottom: 8px; }
+.eyebrow-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
 .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  padding: 3px 9px 3px 7px;
+  background-color: var(--chip);
+}
+.badge-status .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #2e8b57;
+  box-shadow: 0 0 0 2px rgba(46, 139, 87, 0.2);
+  display: inline-block;
+}
+:root[data-theme="dark"] .badge-status .dot {
+  background-color: #4ade80;
+  box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.25);
+}
 h1 {
   font-family: var(--font-display);
   font-weight: 800;
@@ -109,18 +143,53 @@ h1 span { color: var(--accent); }
   padding: 14px 26px 15px;
   cursor: pointer;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 12px 22px -10px var(--lift);
-  transition: background-color 0.2s, border-color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.chip:hover, .chip:focus-visible { border-color: var(--accent); background-color: var(--accent-soft); }
+.chip:hover, .chip:focus-visible {
+  border-color: var(--accent);
+  background-color: var(--accent-soft);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 16px 28px -10px var(--lift);
+  transform: translateY(-2px);
+}
 .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .chip small {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 3px;
+}
+.chip[data-k="tax"] small::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #3B7A57;
+}
+:root[data-theme="dark"] .chip[data-k="tax"] small::before {
+  background: #52b788;
+}
+.chip[data-k="dcf"] small::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.chip[data-k="sponsor"] small::before,
+.chip[data-k="work"] small::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--muted);
 }
 .chip b {
   display: block;
@@ -132,14 +201,19 @@ h1 span { color: var(--accent); }
   text-wrap: balance;
 }
 
-.n1 { --x: 19%; --y: 12%; --fs: 40px; }
-.n2 { --x: 64%; --y: 14%; --fs: 32px; }
-.n3 { --x: 33%; --y: 48%; --fs: 34px; }
-.n4 { --x: 79%; --y: 46%; --fs: 30px; }
-.n5 { --x: 17%; --y: 84%; --fs: 28px; }
-.n6 { --x: 58%; --y: 84%; --fs: 36px; }
+.stage { position: relative; height: 780px; margin-top: 14px; }
+.n1 { --x: 18%; --y: 12%; --fs: 34px; }
+.n2 { --x: 52%; --y: 13%; --fs: 30px; }
+.n3 { --x: 82%; --y: 16%; --fs: 30px; }
+.n4 { --x: 22%; --y: 43%; --fs: 32px; }
+.n5 { --x: 54%; --y: 42%; --fs: 30px; }
+.n6 { --x: 84%; --y: 46%; --fs: 30px; }
+.n7 { --x: 18%; --y: 76%; --fs: 30px; }
+.n8 { --x: 52%; --y: 77%; --fs: 30px; }
+.n9 { --x: 82%; --y: 80%; --fs: 32px; }
 
-.stagefoot { display: flex; justify-content: flex-end; margin-top: 4px; }
+.stagefoot { display: flex; align-items: center; justify-content: flex-end; margin-top: 4px; gap: 8px; }
+.foot-sep { font-family: var(--font-mono); font-size: 12px; color: var(--edge); user-select: none; }
 .motion {
   font-family: var(--font-mono); font-size: 12px;
   color: var(--muted); background: none; cursor: pointer;
@@ -164,61 +238,360 @@ h1 span { color: var(--accent); }
 }
 .links a:hover, .links a:focus-visible { border-color: var(--accent); color: var(--accent); }
 
-/* Detail sheet */
-.sheet { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 16px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.sheet[hidden] { display: none; }
-.scrim { position: absolute; inset: 0; background: var(--scrim); opacity: 0; transition: opacity 0.25s; }
-.panel {
+/* Flowing out animation when card is clicked */
+#index-view { transition: opacity 0.5s ease; }
+.wrap.flowing-out .top {
+  opacity: 0;
+  transform: translateY(-50px);
+  pointer-events: none;
+  transition: transform 1.2s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.8s ease;
+}
+.wrap.flowing-out .stagefoot,
+.wrap.flowing-out .foot {
+  opacity: 0;
+  transform: translateY(50px);
+  pointer-events: none;
+  transition: transform 1.2s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.8s ease;
+}
+.wrap.flowing-out .node {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.wrap.flowing-out .node.n1 {
+  transform: translate3d(-100vw, -35vh, 0) rotate(-20deg) !important;
+  transition: transform 1.5s cubic-bezier(0.2, 0.9, 0.3, 1) 0ms, opacity 1s ease 0ms !important;
+}
+.wrap.flowing-out .node.n2 {
+  transform: translate3d(0, -60vh, 0) rotate(15deg) !important;
+  transition: transform 1.55s cubic-bezier(0.2, 0.9, 0.3, 1) 50ms, opacity 1.05s ease 50ms !important;
+}
+.wrap.flowing-out .node.n3 {
+  transform: translate3d(100vw, -35vh, 0) rotate(22deg) !important;
+  transition: transform 1.5s cubic-bezier(0.2, 0.9, 0.3, 1) 30ms, opacity 1s ease 30ms !important;
+}
+.wrap.flowing-out .node.n4 {
+  transform: translate3d(-110vw, 5vh, 0) rotate(-22deg) !important;
+  transition: transform 1.6s cubic-bezier(0.2, 0.9, 0.3, 1) 80ms, opacity 1.1s ease 80ms !important;
+}
+.wrap.flowing-out .node.n5 {
+  transform: translate3d(15vw, -65vh, 0) rotate(-15deg) !important;
+  transition: transform 1.55s cubic-bezier(0.2, 0.9, 0.3, 1) 50ms, opacity 1.05s ease 50ms !important;
+}
+.wrap.flowing-out .node.n6 {
+  transform: translate3d(110vw, 10vh, 0) rotate(24deg) !important;
+  transition: transform 1.58s cubic-bezier(0.2, 0.9, 0.3, 1) 90ms, opacity 1.1s ease 90ms !important;
+}
+.wrap.flowing-out .node.n7 {
+  transform: translate3d(-100vw, 75vh, 0) rotate(-20deg) !important;
+  transition: transform 1.65s cubic-bezier(0.2, 0.9, 0.3, 1) 120ms, opacity 1.15s ease 120ms !important;
+}
+.wrap.flowing-out .node.n8 {
+  transform: translate3d(0, 70vh, 0) rotate(18deg) !important;
+  transition: transform 1.6s cubic-bezier(0.2, 0.9, 0.3, 1) 100ms, opacity 1.1s ease 100ms !important;
+}
+.wrap.flowing-out .node.n9 {
+  transform: translate3d(100vw, 80vh, 0) rotate(22deg) !important;
+  transition: transform 1.62s cubic-bezier(0.2, 0.9, 0.3, 1) 140ms, opacity 1.15s ease 140ms !important;
+}
+.wrap.flowing-out .node.is-expanding {
+  z-index: 100 !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+  transform: translate3d(calc(50vw - 50%), calc(35vh - 50%), 0) scale(1.6) !important;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease 0.55s !important;
+}
+.wrap.flowing-out .node.is-expanding .chip {
+  background-color: var(--chip);
+  border-color: var(--accent);
+  box-shadow: 0 30px 60px -20px var(--lift);
+  border-radius: 16px;
+  transition: background-color 0.4s, border-color 0.4s, box-shadow 0.6s, border-radius 0.6s;
+}
+
+/* Flowing back animation when returning to overview */
+.wrap.flowing-in .top,
+.wrap.flowing-in .stagefoot,
+.wrap.flowing-in .foot {
+  transition: transform 1s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.8s ease;
+}
+.wrap.flowing-in .node {
+  opacity: 1 !important;
+  pointer-events: none !important;
+}
+.wrap.flowing-in .node.n1 {
+  transition: transform 1.3s cubic-bezier(0.2, 0.9, 0.3, 1) 0ms, opacity 0.9s ease 0ms !important;
+}
+.wrap.flowing-in .node.n2 {
+  transition: transform 1.35s cubic-bezier(0.2, 0.9, 0.3, 1) 50ms, opacity 0.95s ease 50ms !important;
+}
+.wrap.flowing-in .node.n3 {
+  transition: transform 1.3s cubic-bezier(0.2, 0.9, 0.3, 1) 30ms, opacity 0.9s ease 30ms !important;
+}
+.wrap.flowing-in .node.n4 {
+  transition: transform 1.4s cubic-bezier(0.2, 0.9, 0.3, 1) 80ms, opacity 1s ease 80ms !important;
+}
+.wrap.flowing-in .node.n5 {
+  transition: transform 1.35s cubic-bezier(0.2, 0.9, 0.3, 1) 60ms, opacity 0.95s ease 60ms !important;
+}
+.wrap.flowing-in .node.n6 {
+  transition: transform 1.38s cubic-bezier(0.2, 0.9, 0.3, 1) 90ms, opacity 1s ease 90ms !important;
+}
+.wrap.flowing-in .node.n7 {
+  transition: transform 1.42s cubic-bezier(0.2, 0.9, 0.3, 1) 120ms, opacity 1.05s ease 120ms !important;
+}
+.wrap.flowing-in .node.n8 {
+  transition: transform 1.4s cubic-bezier(0.2, 0.9, 0.3, 1) 100ms, opacity 1s ease 100ms !important;
+}
+.wrap.flowing-in .node.n9 {
+  transition: transform 1.45s cubic-bezier(0.2, 0.9, 0.3, 1) 130ms, opacity 1.05s ease 130ms !important;
+}
+
+/* Detail page - full ledger page format aligned to 40px lines */
+.detail-page {
+  display: none;
   position: relative;
-  width: min(680px, 100%);
-  max-height: 86dvh;
-  overflow: auto;
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  padding-top: 0;
+  padding-bottom: 40px;
+  transform-origin: left center;
+}
+.detail-page.active { display: block; }
+.detail-page.page-turning-in {
+  animation: bookPageTurnIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.detail-page.page-turning-out {
+  animation: bookPageTurnOut 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes bookPageTurnIn {
+  0% {
+    opacity: 0;
+    transform: perspective(1600px) rotateY(-18deg) translateX(36px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1600px) rotateY(0deg) translateX(0);
+  }
+}
+@keyframes bookPageTurnOut {
+  0% {
+    opacity: 1;
+    transform: perspective(1600px) rotateY(0deg) translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: perspective(1600px) rotateY(-12deg) translateX(24px);
+  }
+}
+
+.page-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  margin-bottom: 40px;
+  border: 0;
+}
+.page-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink);
   background-color: var(--chip);
   border: 1px solid var(--edge);
-  border-radius: 14px;
-  padding: 28px 28px 26px;
-  box-shadow: 0 30px 60px -24px var(--lift);
-  opacity: 0;
-  transform: scale(0.6);
-  transition: opacity 0.22s, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border-radius: 8px;
+  padding: 6px 14px;
+  height: 32px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px -6px var(--lift);
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
 }
-.sheet.open .scrim { opacity: 1; }
-.sheet.open .panel { opacity: 1; transform: none; }
-.close {
-  position: absolute; top: 14px; right: 14px;
-  font-family: var(--font-mono); font-size: 12px;
-  background: transparent; color: var(--muted);
-  border: 1px solid var(--edge); border-radius: 6px;
-  padding: 6px 10px; cursor: pointer;
+.page-back-btn:hover, .page-back-btn:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: var(--accent-soft);
+  transform: translateX(-3px);
 }
-.close:hover, .close:focus-visible { color: var(--accent); border-color: var(--accent); }
-.panel h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 5vw, 38px); line-height: 1.05; letter-spacing: -0.02em; margin: 6px 64px 12px 0; text-wrap: balance; }
-.panel .status { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
-.panel .lede { margin: 0 0 18px; font-size: 17px; }
-.rows { display: grid; gap: 0; margin: 0 0 18px; padding: 0; list-style: none; border-top: 1px solid var(--rule); }
-.rows li { display: grid; grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr); gap: 4px 16px; padding: 11px 0; border-bottom: 1px solid var(--rule); }
-.rows .k { font-family: var(--font-mono); font-size: 12px; color: var(--muted); letter-spacing: 0.04em; padding-top: 3px; }
-.rows .v { min-width: 0; font-variant-numeric: tabular-nums; }
+.page-entry-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 40px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  user-select: none;
+}
+.about-avatar-wrap {
+  height: 80px;
+  margin: 0 0 40px 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.about-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--edge);
+  box-shadow: 0 6px 18px -6px var(--lift);
+  object-fit: cover;
+}
+.page-header { margin: 0 0 40px 0; }
+.page-status {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 40px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(28px, 4.5vw, 36px);
+  line-height: 40px;
+  letter-spacing: -0.03em;
+  margin: 0;
+  text-wrap: balance;
+}
+.page-lede {
+  font-size: 17px;
+  line-height: 40px;
+  max-width: 65ch;
+  margin: 0;
+  color: var(--ink);
+}
+.detail-page .rows {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 0;
+}
+.detail-page .rows li {
+  display: grid;
+  grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  gap: 0 24px;
+  padding: 0;
+  margin: 0;
+  min-height: 40px;
+  line-height: 40px;
+  border: 0;
+}
+.detail-page .rows .k {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 40px;
+}
+.detail-page .rows .v {
+  font-size: 16px;
+  line-height: 40px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.detail-page .links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 40px 0 0 0;
+  min-height: 40px;
+  align-items: center;
+}
+.detail-page .links a {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--edge);
+  border-radius: 6px;
+  padding: 7px 14px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--chip);
+  box-shadow: 0 8px 14px -10px var(--lift);
+  transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+}
+.detail-page .links a:hover, .detail-page .links a:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: var(--accent-soft);
+}
+.page-bottombar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  margin: 40px 0 0 0;
+  border: 0;
+}
 
 @media (max-width: 640px) {
-  body { background-image: radial-gradient(ellipse 70% 50% at 30% 8%, var(--wash-hi), transparent 70%), radial-gradient(ellipse 120% 90% at 50% 50%, transparent 55%, var(--wash-lo) 100%), var(--grain), repeating-linear-gradient(to bottom, transparent 0, transparent 31px, var(--rule) 31px, var(--rule) 32px); }
+  body {
+    background-image:
+      radial-gradient(ellipse 70% 50% at 30% 8%, var(--wash-hi), transparent 70%),
+      radial-gradient(ellipse 120% 90% at 50% 50%, transparent 55%, var(--wash-lo) 100%),
+      var(--grain),
+      repeating-linear-gradient(to bottom, transparent 0, transparent 39px, var(--rule) 39px, var(--rule) 40px);
+  }
   .wrap { padding-left: 30px; }
   .wrap::before { left: 8px; }
-  .stage { height: 740px; }
+  .stage { height: 940px; }
   .node { max-width: 78%; }
   .chip { padding: 11px 20px 12px; }
   .chip b { font-size: min(var(--fs), 25px); }
-  .n1 { --x: 34%; --y: 7%; }
-  .n2 { --x: 60%; --y: 24%; }
-  .n3 { --x: 38%; --y: 41%; }
-  .n4 { --x: 58%; --y: 58%; }
-  .n5 { --x: 34%; --y: 75%; }
-  .n6 { --x: 58%; --y: 92%; }
-  .panel { padding: 22px 18px 20px; }
-  .rows li { grid-template-columns: 1fr; }
+  .n1 { --x: 34%; --y: 6%; }
+  .n2 { --x: 62%; --y: 17%; }
+  .n3 { --x: 36%; --y: 28%; }
+  .n4 { --x: 62%; --y: 39%; }
+  .n5 { --x: 36%; --y: 50%; }
+  .n6 { --x: 62%; --y: 61%; }
+  .n7 { --x: 36%; --y: 72%; }
+  .n8 { --x: 62%; --y: 83%; }
+  .n9 { --x: 36%; --y: 94%; }
+  .detail-page .rows li {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 0;
+  }
+  .page-topbar {
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .page-bottombar {
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 40px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .panel, .scrim { transition: none; }
+  .detail-page.page-turning-in,
+  .detail-page.page-turning-out {
+    animation: none !important;
+  }
+  .wrap.flowing-out .top,
+  .wrap.flowing-out .stagefoot,
+  .wrap.flowing-out .foot,
+  .wrap.flowing-out .node,
+  .wrap.flowing-in .top,
+  .wrap.flowing-in .stagefoot,
+  .wrap.flowing-in .foot,
+  .wrap.flowing-in .node {
+    transition: none !important;
+  }
 }
 </style>
 </head>
@@ -226,39 +599,67 @@ h1 span { color: var(--accent); }
 
 
 <div class="wrap">
-  <header class="top">
-    <div class="eyebrow">Accounting &amp; Finance · NUST Islamabad · Class of 2028</div>
-    <h1>Ali<span>.</span></h1>
-    <p class="tag">Accounting and Finance, 1% better everyday.</p>
-    <p class="hint">Click a heading to open it.</p>
-  </header>
+  <div id="index-view">
+    <header class="top">
+      <div class="eyebrow-row">
+        <div class="eyebrow">Accounting &amp; Finance · NUST Islamabad · Class of 2028</div>
+        <div class="badge-status"><span class="dot"></span>Open to roles</div>
+      </div>
+      <h1>Ali<span>.</span></h1>
+      <p class="tag">Accounting and Finance, 1% better everyday.</p>
+      <p class="hint">Click a heading to open it.</p>
+    </header>
 
-  <main class="stage" id="stage" aria-label="Portfolio headings">
-    <div class="node n1"><button class="chip" data-k="about" aria-haspopup="dialog"><small>Start here</small><b>About me</b></button></div>
-    <div class="node n2"><button class="chip" data-k="dcf" aria-haspopup="dialog"><small>In progress</small><b>FFC valuation model</b></button></div>
-    <div class="node n3"><button class="chip" data-k="tax" aria-haspopup="dialog"><small>Shipped · v1.3</small><b>Pakistan tax calculator</b></button></div>
-    <div class="node n4"><button class="chip" data-k="sponsor" aria-haspopup="dialog"><small>Results</small><b>Sponsorships</b></button></div>
-    <div class="node n5"><button class="chip" data-k="work" aria-haspopup="dialog"><small>Experience</small><b>Payactiv</b></button></div>
-    <div class="node n6"><button class="chip" data-k="tools" aria-haspopup="dialog"><small>Toolkit</small><b>What I work with</b></button></div>
-  </main>
-  <div class="stagefoot"><button type="button" id="motion" class="motion" aria-pressed="true">Pause swimming</button></div>
-
-  <footer class="foot">
-    <p>Open to roles in finance and business, remote or on-site.</p>
-    <div class="links">
-      <a href="https://github.com/ali015421" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/aliiarshad" target="_blank" rel="noopener">LinkedIn</a>
+    <main class="stage" id="stage" aria-label="Portfolio headings">
+      <div class="node n1"><button class="chip" data-k="about"><small>Start here</small><b>About me</b></button></div>
+      <div class="node n2"><button class="chip" data-k="dcf"><small>In progress</small><b>FFC valuation model</b></button></div>
+      <div class="node n3"><button class="chip" data-k="tax"><small>Shipped · v1.3</small><b>Pakistan tax calculator</b></button></div>
+      <div class="node n4"><button class="chip" data-k="work"><small>Experience</small><b>Payactiv</b></button></div>
+      <div class="node n5"><button class="chip" data-k="tedx"><small>Results · Closed</small><b>TEDx</b></button></div>
+      <div class="node n6"><button class="chip" data-k="nimun"><small>Results · Leadership</small><b>NIMUN</b></button></div>
+      <div class="node n7"><button class="chip" data-k="sciencebee"><small>Results · Corporate</small><b>Science Bee</b></button></div>
+      <div class="node n8"><button class="chip" data-k="volunteer"><small>Volunteer</small><b>Haami Campaign</b></button></div>
+      <div class="node n9"><button class="chip" data-k="tools"><small>Toolkit</small><b>What I work with</b></button></div>
+    </main>
+    <div class="stagefoot">
+      <button type="button" id="theme-toggle" class="motion" aria-label="Toggle dark or light theme">Dark mode</button>
+      <span class="foot-sep" aria-hidden="true">·</span>
+      <button type="button" id="motion" class="motion" aria-pressed="true">Pause swimming</button>
     </div>
-  </footer>
-</div>
 
-<div class="sheet" id="sheet" hidden>
-  <div class="scrim" id="scrim"></div>
-  <article class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="ptitle">
-    <button class="close" id="close" type="button">Close</button>
-    <div class="status" id="pstatus"></div>
-    <h2 id="ptitle"></h2>
+    <footer class="foot">
+      <p>Open to roles in finance and business, remote or on-site.</p>
+      <div class="links">
+        <a href="https://github.com/aliiarrshad" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/aliiarshad" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </footer>
+  </div>
+
+  <article class="detail-page" id="detail-page" hidden aria-labelledby="ptitle">
+    <div class="page-topbar">
+      <button type="button" class="page-back-btn" id="page-back">
+        <span aria-hidden="true">←</span> Back to overview
+      </button>
+      <div class="page-entry-tag" id="pentry">Ledger · Entry 01</div>
+    </div>
+
+    <div id="page-hero-slot"></div>
+
+    <header class="page-header">
+      <div class="page-status" id="pstatus"></div>
+      <h2 class="page-title" id="ptitle"></h2>
+      <p class="page-lede" id="plede"></p>
+    </header>
+
     <div id="pbody"></div>
+
+    <div class="page-bottombar">
+      <button type="button" class="page-back-btn" id="page-back-bottom">
+        <span aria-hidden="true">←</span> Back to overview
+      </button>
+      <div class="page-entry-tag">End of entry</div>
+    </div>
   </article>
 </div>
 
@@ -268,14 +669,18 @@ h1 span { color: var(--accent); }
     about: {
       status: "Start here",
       title: "About me",
-      lede: "I study Accounting and Finance at NUST and I am working toward a financial or business analyst role. I am adding Excel, SQL and Python to my accounting coursework.",
+      lede: "Accounting and Finance student at NUST Islamabad (Class of 2028). Figuring out how finance and code fit together, and getting 1% better every day.",
+      avatar: "avatar.jpg",
       rows: [
-        ["Studying", "BS Accounting and Finance, NUST Islamabad. Expected graduation 2028."],
-        ["Looking for", "Business analyst, financial analyst and data analyst roles."],
-        ["How I work", "I use real annual reports instead of sample data, and I check my code against the accounting."],
-        ["Also", "Completed AI Fluency: Framework and Foundations (Anthropic), August 2026."]
+        ["Education", "BS Accounting and Finance, NUST Islamabad. Expected graduation 2028."],
+        ["Coursework", "Financial Management, Management Accounting, Financial Econometrics (regression and time series), Business Mathematics."],
+        ["Philosophy", "Done is better than perfect. Shipping > perfecting. 1% better today than yesterday."],
+        ["How I learn", "1. Understand why (discipline > motivation). 2. Master fundamentals first. 3. Build small projects (facts: projects > tutorials). 4. Use, break and fix."],
+        ["Code & Finance", "Reading other people’s code is underrated. I use real annual reports and test my code against accounting truth."],
+        ["Certifications", "AI Fluency: Framework and Foundations (Anthropic), August 2026."],
+        ["Looking for", "Financial analyst, business analyst, and data analyst roles (remote or on-site)."]
       ],
-      links: [["GitHub", "https://github.com/ali015421"], ["LinkedIn", "https://www.linkedin.com/in/aliiarshad"]]
+      links: [["GitHub", "https://github.com/aliiarrshad"], ["LinkedIn", "https://www.linkedin.com/in/aliiarshad"], ["Email", "mailto:ali015421@gmail.com"]]
     },
     dcf: {
       status: "In progress",
@@ -288,7 +693,8 @@ h1 span { color: var(--accent); }
         ["Growth split", "Of the Rs 214.06bn rise in FY2024 turnover, Rs 134.5bn came from FFBL and about Rs 79.6bn from FFC's own business."],
         ["Restatement", "“Other investments” in FY2024 cash flow reads Rs 14.0bn in the 2024 report and Rs 2.1bn in the 2025 report, a reclassification of about Rs 11.86bn."],
         ["Where it is", "The historical data and sources are done. Forecasting and the valuation come next."]
-      ]
+      ],
+      links: [["Repository", "https://github.com/aliiarrshad/ffc-dcf"]]
     },
     tax: {
       status: "Shipped · v1.3",
@@ -300,27 +706,62 @@ h1 span { color: var(--accent); }
         ["v1.3", "The tax logic now lives in its own module, results come back as a frozen dataclass, and there are unit tests."],
         ["Process", "Feature branches, each version tagged as a GitHub release, and a project journal in my own words."]
       ],
-      links: [["Repository", "https://github.com/ali015421/tax-slab-calculator"]]
-    },
-    sponsor: {
-      status: "Results",
-      title: "Sponsorships",
-      lede: "I raised money and partners for student events through cold outreach and direct meetings.",
-      rows: [
-        ["NIMUN", "External Relations, October 2024 to January 2025. Cold called 100+ institutes, set up meetings and brought in delegations. Sponsorships of PKR 2 million across 20 meetings."],
-        ["TEDx", "Sponsorship, March 2025. Closed 5 sponsors worth PKR 1 million and delivered the agreed deliverables end to end."],
-        ["Haami", "Sponsorship role. PKR 100,000 in donations."],
-        ["Science Bee", "Secured Haval as a sponsor. They brought their cars to the event."]
-      ]
+      links: [["Repository", "https://github.com/aliiarrshad/tax-slab-calculator"]]
     },
     work: {
       status: "Experience",
       title: "Payactiv",
-      lede: "Inbound finance and support work for customers in the United States.",
+      lede: "Fintech operations and technical workflows across earned wage access applications and financial portals.",
       rows: [
-        ["Role", "Answered inbound finance and support queries."],
-        ["Hours", "Worked U.S. time zones."],
-        ["Left", "October 2026."]
+        ["Role", "Fintech Operations & Technical Workflows."],
+        ["Platform Scope", "Investigated and resolved enterprise finance operations, earned wage access workflows, payment discrepancies, and technical platform issues across applications and web portals."],
+        ["CRM & Systems", "Maintained financial record accuracy and issue escalation architecture in Salesforce across ~1,800 monthly cases."],
+        ["Coverage", "U.S. operational coverage from Islamabad."],
+        ["Tenure", "June 2026 to October 2026."]
+      ]
+    },
+    tedx: {
+      status: "Results · Closed",
+      title: "TEDx",
+      lede: "Corporate sponsorship acquisition and end-to-end contractual deliverable management for TEDx.",
+      rows: [
+        ["Role", "Sponsorship Executive, March 2025."],
+        ["Deal Volume", "Closed 5 corporate sponsors valued at PKR 1,000,000."],
+        ["Execution", "Owned sponsor contractual deliverables and brand activations from agreement through event day execution."],
+        ["Strategy", "Conducted targeted sponsor drives, corporate calls, and pitch presentations."]
+      ]
+    },
+    nimun: {
+      status: "Results · Leadership",
+      title: "NIMUN",
+      lede: "External relations and delegation acquisition for NUST's flagship Model United Nations conference.",
+      rows: [
+        ["Role", "External Relations Executive, October 2024 to January 2025."],
+        ["Outreach", "Cold-called 100+ institutes and conducted 20 executive partnership meetings."],
+        ["Capital Raised", "Secured PKR 2,000,000 in sponsorships and institutional delegations."],
+        ["Impact", "Expanded nationwide delegate representation and corporate partner network."]
+      ]
+    },
+    sciencebee: {
+      status: "Results · Corporate",
+      title: "Science Bee",
+      lede: "Corporate brand partnerships and headline sponsor acquisition for NUST Science Bee.",
+      rows: [
+        ["Role", "Team Sponsorships Member, November 2024 to February 2025."],
+        ["Outreach", "Made 150+ calls and sent 250+ targeted corporate proposals."],
+        ["Headline Deal", "Secured Haval as title automotive sponsor, exhibiting vehicles on campus."],
+        ["Logistics", "Coordinated exhibition areas, vehicle display logistics, and sponsor requirements."]
+      ]
+    },
+    volunteer: {
+      status: "Volunteer Experience",
+      title: "Haami Campaign",
+      lede: "Fundraising and corporate outreach for community student welfare and donor mobilization.",
+      rows: [
+        ["Role", "Sponsorships and External Relations Member, October 2024 to Present."],
+        ["Donor Outreach", "Conducted 200+ calls and sent 250+ targeted emails to corporate organizations."],
+        ["Impact", "Helped raise PKR 100,000 in philanthropic donations and community sponsorships."],
+        ["Mission", "Student welfare campaigns and educational support initiatives."]
       ]
     },
     tools: {
@@ -328,82 +769,143 @@ h1 span { color: var(--accent); }
       title: "What I work with",
       lede: "Each one is listed by how far along I actually am with it.",
       rows: [
-        ["Python", "Working. Variables, control flow, loops, functions. Used in two projects."],
-        ["Git and GitHub", "Working. Feature branches, tagged releases, unit tests in the tax calculator."],
+        ["Python", "Working. Variables, control flow, loops, functions. Used in DCF valuation and tax calculator."],
+        ["Git and GitHub", "Working. Feature branches, tagged releases, unit tests."],
         ["Accounting", "Rebuilding from first principles. Debit and credit derived from the accounting equation."],
         ["SQL", "Learning. SQLite with a finance-themed database of accounts and transactions."],
-        ["Excel", "Learning. Formulas, lookups, then Power Query."],
-        ["Next", "pandas, statistics, Power BI, then a financial statement analyzer."]
+        ["Excel", "Learning. Formulas, lookups, Power Query."],
+        ["Next", "pandas, financial econometrics, Power BI, and automated statement analysis."]
       ]
     }
   };
 
-  /* ---------- Detail sheet ---------- */
-  var sheet = document.getElementById("sheet");
-  var panel = document.getElementById("panel");
+  /* ---------- Detail page (book format) ---------- */
+  var wrap = document.querySelector(".wrap");
+  var indexView = document.getElementById("index-view");
+  var detailPage = document.getElementById("detail-page");
   var pt = document.getElementById("ptitle");
   var ps = document.getElementById("pstatus");
+  var pl = document.getElementById("plede");
+  var pe = document.getElementById("pentry");
   var pb = document.getElementById("pbody");
-  var closeBtn = document.getElementById("close");
+  var heroSlot = document.getElementById("page-hero-slot");
+  var backBtn = document.getElementById("page-back");
+  var backBtnBottom = document.getElementById("page-back-bottom");
   var lastBtn = null;
+  var isPageOpen = false;
+  var flowTimer = null;
   var fish = [];
+
+  var entryNumbers = {
+    about: "Ledger · Entry 01",
+    dcf: "Ledger · Entry 02",
+    tax: "Ledger · Entry 03",
+    work: "Ledger · Entry 04",
+    tedx: "Ledger · Entry 05",
+    nimun: "Ledger · Entry 06",
+    sciencebee: "Ledger · Entry 07",
+    volunteer: "Ledger · Entry 08",
+    tools: "Ledger · Entry 09"
+  };
 
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 
-  function openSheet(key, btn) {
+  function openPage(key, btn) {
     var d = D[key];
-    if (!d) return;
+    if (!d || isPageOpen) return;
+    isPageOpen = true;
     lastBtn = btn;
+    clearTimeout(flowTimer);
+
     ps.textContent = d.status;
     pt.textContent = d.title;
-    var html = '<p class="lede">' + esc(d.lede) + "</p>";
-    html += '<ul class="rows">' + d.rows.map(function (r) {
+    pl.textContent = d.lede;
+    pe.textContent = entryNumbers[key] || "Ledger Entry";
+
+    if (heroSlot) {
+      if (d.avatar) {
+        heroSlot.innerHTML = '<div class="about-avatar-wrap"><img src="' + esc(d.avatar) + '" alt="Ali avatar" class="about-avatar"><div><b style="font-size:18px;display:block;line-height:24px;">Ali</b><span style="font-family:var(--font-mono);font-size:12px;color:var(--muted);display:block;line-height:20px;">Finance &amp; Code · NUST</span></div></div>';
+        heroSlot.style.display = "";
+      } else {
+        heroSlot.innerHTML = "";
+        heroSlot.style.display = "none";
+      }
+    }
+
+    var html = '<ul class="rows">' + d.rows.map(function (r) {
       return '<li><span class="k">' + esc(r[0]) + '</span><span class="v">' + esc(r[1]) + "</span></li>";
     }).join("") + "</ul>";
+
     if (d.links) {
       html += '<div class="links">' + d.links.map(function (l) {
-        return '<a href="' + l[1] + '" target="_blank" rel="noopener">' + esc(l[0]) + "</a>";
+        return '<a href="' + l[1] + '" target="_blank" rel="noopener">' + esc(l[0]) + ' <span aria-hidden="true">↗</span></a>';
       }).join("") + "</div>";
     }
     pb.innerHTML = html;
-    panel.scrollTop = 0;
-    sheet.hidden = false;
-    document.documentElement.style.overflow = "hidden";
-    var b = btn.getBoundingClientRect();
-    var p = panel.getBoundingClientRect();
-    panel.style.transformOrigin = (b.left + b.width / 2 - p.left) + "px " + (b.top + b.height / 2 - p.top) + "px";
-    requestAnimationFrame(function () { requestAnimationFrame(function () { sheet.classList.add("open"); }); });
-    closeBtn.focus({ preventScroll: true });
+
+    var activeNode = btn.closest(".node");
+    nodes.forEach(function (n) { n.classList.remove("is-expanding", "is-active"); });
+    if (activeNode) activeNode.classList.add("is-expanding");
+
+    wrap.classList.remove("flowing-in");
+    wrap.classList.add("flowing-out");
+
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var delay = reduce ? 0 : 750;
+
+    flowTimer = setTimeout(function () {
+      indexView.style.display = "none";
+      detailPage.hidden = false;
+      detailPage.classList.add("active");
+      detailPage.classList.remove("page-turning-out");
+      detailPage.classList.add("page-turning-in");
+      window.scrollTo(0, 0);
+      backBtn.focus({ preventScroll: true });
+    }, delay);
   }
 
-  function closeSheet() {
-    if (sheet.hidden) return;
-    sheet.classList.remove("open");
-    var done = function () {
-      sheet.hidden = true;
-      document.documentElement.style.overflow = "";
-      fish.forEach(function (f) { f.hold = false; });
-      if (lastBtn) lastBtn.focus({ preventScroll: true });
-    };
+  function closePage() {
+    if (!isPageOpen) return;
+    clearTimeout(flowTimer);
+
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) done(); else setTimeout(done, 280);
+
+    detailPage.classList.remove("page-turning-in");
+    detailPage.classList.add("page-turning-out");
+
+    var outDuration = reduce ? 0 : 350;
+
+    flowTimer = setTimeout(function () {
+      detailPage.hidden = true;
+      detailPage.classList.remove("active", "page-turning-out");
+      if (heroSlot) {
+        heroSlot.innerHTML = "";
+        heroSlot.style.display = "none";
+      }
+      indexView.style.display = "";
+
+      wrap.classList.remove("flowing-out");
+      wrap.classList.add("flowing-in");
+
+      var inDuration = reduce ? 0 : 1300;
+      setTimeout(function () {
+        wrap.classList.remove("flowing-in");
+        nodes.forEach(function (n) { n.classList.remove("is-expanding", "is-active"); });
+        fish.forEach(function (f) { f.hold = false; });
+        isPageOpen = false;
+        if (lastBtn) lastBtn.focus({ preventScroll: true });
+      }, inDuration);
+    }, outDuration);
   }
 
   document.querySelectorAll(".chip").forEach(function (c) {
-    c.addEventListener("click", function () { openSheet(c.getAttribute("data-k"), c); });
+    c.addEventListener("click", function () { openPage(c.getAttribute("data-k"), c); });
   });
-  closeBtn.addEventListener("click", closeSheet);
-  document.getElementById("scrim").addEventListener("click", closeSheet);
+  backBtn.addEventListener("click", closePage);
+  if (backBtnBottom) backBtnBottom.addEventListener("click", closePage);
   document.addEventListener("keydown", function (e) {
-    if (sheet.hidden) return;
-    if (e.key === "Escape") { closeSheet(); return; }
-    if (e.key === "Tab") {
-      var f = panel.querySelectorAll("button, a[href]");
-      if (!f.length) return;
-      var first = f[0], last = f[f.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
+    if (!isPageOpen) return;
+    if (e.key === "Escape") { closePage(); return; }
   });
 
   /* ---------- Swimming headings ---------- */
@@ -422,13 +924,19 @@ h1 span { color: var(--accent); }
     nodes.forEach(function (n) { n.style.left = "0px"; n.style.top = "0px"; n.style.transform = "none"; });
     fish = nodes.map(function (n, i) {
       var r = n.getBoundingClientRect();
+      var initialAngle = Math.random() * Math.PI * 2;
+      var initSp = (26 + Math.random() * 22) * slow;
       var f = {
         el: n, w: r.width, h: r.height,
         x: starts[i].x, y: starts[i].y,
-        th: (i % 2 ? Math.PI : 0) + (i - 2.5) * 0.35,
-        sp: (38 + (i * 7) % 20) * slow,
-        f1: 0.21 + i * 0.037, f2: 0.47 + i * 0.053,
-        p1: i * 1.7, p2: i * 2.9,
+        th: initialAngle,
+        targetTh: initialAngle,
+        turnRate: 0,
+        wanderTimer: 0.5 + Math.random() * 2.2,
+        sp: initSp,
+        targetSp: initSp,
+        turnWobbleFreq: 0.25 + Math.random() * 0.35,
+        turnWobblePhase: Math.random() * Math.PI * 2,
         hold: false
       };
       n.style.width = f.w + "px";
@@ -447,7 +955,8 @@ h1 span { color: var(--accent); }
   }
 
   function draw(f) {
-    var tilt = Math.sin(f.th) * 3;
+    var tilt = Math.sin(f.th) * 2.6 + f.turnRate * 0.35;
+    tilt = Math.max(-6, Math.min(6, tilt));
     f.el.style.transform = "translate3d(" + f.x.toFixed(1) + "px," + f.y.toFixed(1) + "px,0) rotate(" + tilt.toFixed(2) + "deg)";
   }
 
@@ -456,14 +965,25 @@ h1 span { color: var(--accent); }
     if (!prev) prev = ts;
     var dt = Math.min((ts - prev) / 1000, 0.05);
     prev = ts;
-    if (!sheet.hidden) { requestAnimationFrame(step); return; }
+    if (isPageOpen) { requestAnimationFrame(step); return; }
     clock += dt;
     var mx = small() ? 30 : 110, my = small() ? 36 : 70;
+    var slow = small() ? 0.6 : 1;
 
     fish.forEach(function (f, i) {
       if (f.hold) return;
-      var hx = Math.cos(f.th), hy = Math.sin(f.th);
-      var turn = (Math.sin(clock * f.f1 + f.p1) + 0.6 * Math.sin(clock * f.f2 + f.p2)) * 0.6;
+
+      // Dynamic wander updates
+      f.wanderTimer -= dt;
+      if (f.wanderTimer <= 0) {
+        var turnDelta = (Math.random() - 0.5) * 2.2;
+        f.targetTh += turnDelta;
+        f.targetSp = (22 + Math.random() * 26) * slow;
+        f.wanderTimer = 1.3 + Math.random() * 2.7;
+      }
+
+      var ambientWobble = Math.sin(clock * f.turnWobbleFreq + f.turnWobblePhase) * 0.35;
+      var cx = f.x + f.w / 2, cy = f.y + f.h / 2;
       var dx = 0, dy = 0;
 
       if (f.x < mx) dx += (mx - f.x) / mx;
@@ -471,7 +991,6 @@ h1 span { color: var(--accent); }
       if (f.y < my) dy += (my - f.y) / my;
       if (f.y + f.h > H - my) dy -= (f.y + f.h - (H - my)) / my;
 
-      var cx = f.x + f.w / 2, cy = f.y + f.h / 2;
       fish.forEach(function (g, j) {
         if (i === j) return;
         var ox = cx - (g.x + g.w / 2), oy = cy - (g.y + g.h / 2);
@@ -484,17 +1003,48 @@ h1 span { color: var(--accent); }
         }
       });
 
-      if (dx || dy) turn += 3.4 * (hx * dy - hy * dx);
-      f.th += turn * dt;
+      var angleDiff = ((f.targetTh - f.th + Math.PI) % (Math.PI * 2)) - Math.PI;
+      if (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
+      var steer = angleDiff * 2.2 + ambientWobble;
 
-      var sp = f.sp * (0.85 + 0.15 * Math.sin(clock * 0.7 + f.p1));
-      f.x += Math.cos(f.th) * sp * dt;
-      f.y += Math.sin(f.th) * 0.65 * sp * dt;
+      var hx = Math.cos(f.th), hy = Math.sin(f.th);
+      if (dx !== 0 || dy !== 0) {
+        steer += 3.5 * (hx * dy - hy * dx);
+        if (f.x < mx || f.x + f.w > W - mx || f.y < my || f.y + f.h > H - my) {
+          var toCenterX = W / 2 - cx;
+          var toCenterY = H / 2 - cy;
+          f.targetTh = Math.atan2(toCenterY, toCenterX) + (Math.random() - 0.5) * 0.7;
+        }
+      }
 
-      if (f.x < 0) { f.x = 0; f.th = Math.PI - f.th; }
-      if (f.x + f.w > W) { f.x = W - f.w; f.th = Math.PI - f.th; }
-      if (f.y < 0) { f.y = 0; f.th = -f.th; }
-      if (f.y + f.h > H) { f.y = H - f.h; f.th = -f.th; }
+      f.turnRate = steer;
+      f.th += steer * dt;
+
+      f.sp += (f.targetSp - f.sp) * Math.min(1, dt * 2.0);
+
+      f.x += Math.cos(f.th) * f.sp * dt;
+      f.y += Math.sin(f.th) * 0.7 * f.sp * dt;
+
+      if (f.x < 0) {
+        f.x = 0;
+        f.th = Math.PI - f.th + (Math.random() - 0.5) * 0.4;
+        f.targetTh = f.th;
+      }
+      if (f.x + f.w > W) {
+        f.x = W - f.w;
+        f.th = Math.PI - f.th + (Math.random() - 0.5) * 0.4;
+        f.targetTh = f.th;
+      }
+      if (f.y < 0) {
+        f.y = 0;
+        f.th = -f.th + (Math.random() - 0.5) * 0.4;
+        f.targetTh = f.th;
+      }
+      if (f.y + f.h > H) {
+        f.y = H - f.h;
+        f.th = -f.th + (Math.random() - 0.5) * 0.4;
+        f.targetTh = f.th;
+      }
     });
 
     for (var a = 0; a < fish.length; a++) {
@@ -540,12 +1090,59 @@ h1 span { color: var(--accent); }
     if (motionOn) run();
   });
 
+  /* ---------- Theme toggle ---------- */
+  var themeBtn = document.getElementById("theme-toggle");
+  function getPreferredTheme() {
+    try {
+      var saved = localStorage.getItem("portfolio-theme");
+      if (saved === "dark" || saved === "light") return saved;
+    } catch (e) {}
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+
+  function applyTheme(theme, save) {
+    if (theme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+    if (save) {
+      try { localStorage.setItem("portfolio-theme", theme); } catch (e) {}
+    }
+    if (themeBtn) {
+      themeBtn.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+    }
+  }
+
+  var currentTheme = getPreferredTheme();
+  applyTheme(currentTheme, false);
+
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      var activeTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      applyTheme(activeTheme, true);
+    });
+  }
+
+  if (window.matchMedia) {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (e) {
+      try {
+        if (!localStorage.getItem("portfolio-theme")) {
+          applyTheme(e.matches ? "dark" : "light", false);
+        }
+      } catch (err) {}
+    });
+  }
+
   function start() { setup(); paintMotion(); run(); }
 
   var rt;
   window.addEventListener("resize", function () {
     clearTimeout(rt);
-    rt = setTimeout(setup, 200);
+    rt = setTimeout(function () {
+      if (isPageOpen) return;
+      setup();
+    }, 200);
   });
 
   if (document.fonts && document.fonts.ready) { document.fonts.ready.then(start); } else { start(); }
