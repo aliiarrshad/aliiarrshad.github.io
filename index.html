@@ -535,7 +535,7 @@ h1 span { color: var(--accent); }
   border: 0;
 }
 
-.eyebrow-mob { display: none; }
+.eyebrow-mob, .foot-mob, .back-text-mob { display: none; }
 
 @media (max-width: 640px) {
   body {
@@ -559,8 +559,8 @@ h1 span { color: var(--accent); }
     border-right: 1px solid var(--margin);
   }
 
-  .eyebrow-desk { display: none; }
-  .eyebrow-mob { display: inline; }
+  .eyebrow-desk, .foot-desk, .back-text-desk { display: none; }
+  .eyebrow-mob, .foot-mob, .back-text-mob { display: inline; }
 
   /* Header strictly aligned to 40px ledger lines */
   .top {
@@ -579,7 +579,7 @@ h1 span { color: var(--accent); }
     margin: 0;
   }
   .eyebrow {
-    font-size: 10px;
+    font-size: 9.5px;
     letter-spacing: 0.05em;
     line-height: 40px;
     margin: 0;
@@ -588,10 +588,18 @@ h1 span { color: var(--accent); }
     text-overflow: ellipsis;
   }
   .badge-status {
-    font-size: 9.5px;
-    padding: 2px 7px;
-    height: 22px;
+    font-size: 8px;
+    letter-spacing: 0.04em;
+    padding: 1px 6px;
+    height: 18px;
+    line-height: 14px;
     flex-shrink: 0;
+    white-space: nowrap;
+    gap: 4px;
+  }
+  .badge-status .dot {
+    width: 4px;
+    height: 4px;
   }
   h1 {
     font-size: 46px;
@@ -718,30 +726,48 @@ h1 span { color: var(--accent); }
     font-size: 14.5px;
     line-height: 40px;
   }
-  .page-topbar {
+  .page-topbar, .page-bottombar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     height: 40px;
     line-height: 40px;
     margin-bottom: 40px;
+    gap: 8px;
+    box-sizing: border-box;
+  }
+  .page-back-btn {
+    height: 28px;
+    padding: 0 10px;
+    font-size: 11px;
+    gap: 5px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
   .page-entry-tag {
-    font-size: 11px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
     line-height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
   }
   .page-header {
     margin-bottom: 40px;
   }
   .page-title {
-    font-size: 26px;
+    font-size: 24px;
     line-height: 40px;
   }
   .page-lede {
-    font-size: 15px;
+    font-size: 14.5px;
     line-height: 40px;
   }
   .page-bottombar {
-    height: 40px;
-    line-height: 40px;
     margin-top: 40px;
+    margin-bottom: 0;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -771,7 +797,7 @@ h1 span { color: var(--accent); }
       <div class="eyebrow-row">
         <div class="eyebrow">
           <span class="eyebrow-desk">Accounting &amp; Finance · NUST Islamabad · Class of 2028</span>
-          <span class="eyebrow-mob">NUST '28 · Accounting &amp; Finance</span>
+          <span class="eyebrow-mob">NUST '28 · Finance</span>
         </div>
         <div class="badge-status"><span class="dot"></span>Open to roles</div>
       </div>
@@ -796,7 +822,10 @@ h1 span { color: var(--accent); }
     </div>
 
     <footer class="foot">
-      <p>Open to roles in finance and business, remote or on-site.</p>
+      <p>
+        <span class="foot-desk">Open to roles in finance and business, remote or on-site.</span>
+        <span class="foot-mob">Open to finance &amp; business roles.</span>
+      </p>
       <div class="links">
         <a href="https://github.com/aliiarrshad" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/aliiarshad" target="_blank" rel="noopener">LinkedIn</a>
@@ -807,7 +836,7 @@ h1 span { color: var(--accent); }
   <article class="detail-page" id="detail-page" hidden aria-labelledby="ptitle">
     <div class="page-topbar">
       <button type="button" class="page-back-btn" id="page-back">
-        <span aria-hidden="true">←</span> Back to overview
+        <span aria-hidden="true">←</span> <span class="back-text-desk">Back to overview</span><span class="back-text-mob">Overview</span>
       </button>
       <div class="page-entry-tag" id="pentry">Ledger · Entry 01</div>
     </div>
@@ -824,7 +853,7 @@ h1 span { color: var(--accent); }
 
     <div class="page-bottombar">
       <button type="button" class="page-back-btn" id="page-back-bottom">
-        <span aria-hidden="true">←</span> Back to overview
+        <span aria-hidden="true">←</span> <span class="back-text-desk">Back to overview</span><span class="back-text-mob">Overview</span>
       </button>
       <div class="page-entry-tag">End of entry</div>
     </div>
