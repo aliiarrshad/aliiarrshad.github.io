@@ -141,17 +141,37 @@ h1 span { color: var(--accent); }
   border: 1px solid var(--edge);
   border-radius: 26px;
   padding: 14px 26px 15px;
-  cursor: pointer;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 12px 22px -10px var(--lift);
-  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, outline 0.15s, transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  outline: 2px solid transparent;
+  outline-offset: 3px;
 }
-.chip:hover, .chip:focus-visible {
+.chip:hover {
   border-color: var(--accent);
   background-color: var(--accent-soft);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 16px 28px -10px var(--lift);
-  transform: translateY(-2px);
 }
-.chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.chip.is-grabbed, .chip:focus-visible {
+  border-color: var(--accent);
+  background-color: var(--accent-soft);
+  cursor: grabbing;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 20px 36px -10px var(--lift), 0 0 0 4px rgba(138, 94, 0, 0.12);
+  transform: scale(1.025);
+}
+:root[data-theme="dark"] .chip.is-grabbed,
+:root[data-theme="dark"] .chip:focus-visible {
+  outline: 2px solid var(--accent);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 20px 36px -10px var(--lift), 0 0 0 4px rgba(233, 185, 73, 0.16);
+}
+.node.is-dragging {
+  z-index: 50 !important;
+}
 .chip small {
   display: inline-flex;
   align-items: center;
@@ -898,8 +918,16 @@ h1 span { color: var(--accent); }
     }, outDuration);
   }
 
-  document.querySelectorAll(".chip").forEach(function (c) {
-    c.addEventListener("click", function () { openPage(c.getAttribute("data-k"), c); });
+  document.querySelectorAll(".chip").forEach(function (c, i) {
+    c.addEventListener("click", function (e) {
+      var f = fish[i];
+      if (f && f.suppressClick) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      openPage(c.getAttribute("data-k"), c);
+    });
   });
   backBtn.addEventListener("click", closePage);
   if (backBtnBottom) backBtnBottom.addEventListener("click", closePage);
@@ -937,7 +965,9 @@ h1 span { color: var(--accent); }
         targetSp: initSp,
         turnWobbleFreq: 0.25 + Math.random() * 0.35,
         turnWobblePhase: Math.random() * Math.PI * 2,
-        hold: false
+        hold: false,
+        dragging: false,
+        suppressClick: false
       };
       n.style.width = f.w + "px";
       n.style.maxWidth = "none";
@@ -947,10 +977,89 @@ h1 span { color: var(--accent); }
     var btns = stage.querySelectorAll(".chip");
     fish.forEach(function (f, i) {
       var b = btns[i];
-      b.onpointerenter = function (e) { if (e.pointerType === "mouse") f.hold = true; };
-      b.onpointerleave = function () { f.hold = false; };
-      b.onfocus = function () { if (b.matches(":focus-visible")) f.hold = true; };
-      b.onblur = function () { f.hold = false; };
+      var dragStartX = 0, dragStartY = 0;
+      var fishStartX = 0, fishStartY = 0;
+      var hasDragged = false;
+      var lastX = 0, lastY = 0, lastTime = 0;
+      var flingVx = 0, flingVy = 0;
+
+      b.onpointerdown = function (e) {
+        if (isPageOpen) return;
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+        f.dragging = true;
+        f.hold = true;
+        hasDragged = false;
+        dragStartX = e.clientX;
+        dragStartY = e.clientY;
+        fishStartX = f.x;
+        fishStartY = f.y;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        lastTime = performance.now();
+        flingVx = 0;
+        flingVy = 0;
+
+        b.classList.add("is-grabbed");
+        f.el.classList.add("is-dragging");
+        try { b.setPointerCapture(e.pointerId); } catch (err) {}
+      };
+
+      b.onpointermove = function (e) {
+        if (!f.dragging) return;
+        var dx = e.clientX - dragStartX;
+        var dy = e.clientY - dragStartY;
+        if (!hasDragged && Math.hypot(dx, dy) > 5) {
+          hasDragged = true;
+        }
+
+        var now = performance.now();
+        var dt = Math.max((now - lastTime) / 1000, 0.001);
+        flingVx = (e.clientX - lastX) / dt;
+        flingVy = (e.clientY - lastY) / dt;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        lastTime = now;
+
+        f.x = Math.max(0, Math.min(W - f.w, fishStartX + dx));
+        f.y = Math.max(0, Math.min(H - f.h, fishStartY + dy));
+        f.turnRate = Math.max(-8, Math.min(8, flingVx * 0.02));
+        draw(f);
+      };
+
+      function endDrag(e) {
+        if (!f.dragging) return;
+        f.dragging = false;
+        b.classList.remove("is-grabbed");
+        f.el.classList.remove("is-dragging");
+        try { b.releasePointerCapture(e.pointerId); } catch (err) {}
+
+        if (hasDragged) {
+          f.suppressClick = true;
+          setTimeout(function () { f.suppressClick = false; }, 80);
+
+          var flingSpeed = Math.hypot(flingVx, flingVy);
+          if (flingSpeed > 30) {
+            f.th = Math.atan2(flingVy, flingVx);
+            f.targetTh = f.th;
+            f.sp = Math.min(flingSpeed * 0.65, 140);
+          }
+        }
+        f.hold = false;
+      }
+
+      b.onpointerup = endDrag;
+      b.onpointercancel = endDrag;
+
+      b.onfocus = function () {
+        if (b.matches(":focus-visible")) {
+          f.hold = true;
+          b.classList.add("is-grabbed");
+        }
+      };
+      b.onblur = function () {
+        f.hold = false;
+        b.classList.remove("is-grabbed");
+      };
     });
   }
 
@@ -971,7 +1080,7 @@ h1 span { color: var(--accent); }
     var slow = small() ? 0.6 : 1;
 
     fish.forEach(function (f, i) {
-      if (f.hold) return;
+      if (f.hold || f.dragging) return;
 
       // Dynamic wander updates
       f.wanderTimer -= dt;
@@ -998,8 +1107,9 @@ h1 span { color: var(--accent); }
         if (Math.abs(ox) < nx && Math.abs(oy) < ny) {
           var s = 1 - Math.max(Math.abs(ox) / nx, Math.abs(oy) / ny);
           var m = Math.hypot(ox, oy) || 1;
-          dx += (ox / m) * (0.8 + s * 1.6);
-          dy += (oy / m) * (0.8 + s * 1.6);
+          var pushMult = g.dragging ? 2.5 : 1.0;
+          dx += (ox / m) * (0.8 + s * 1.6) * pushMult;
+          dy += (oy / m) * (0.8 + s * 1.6) * pushMult;
         }
       });
 
@@ -1053,7 +1163,8 @@ h1 span { color: var(--accent); }
         var ox = Math.min(p.x + p.w, q.x + q.w) - Math.max(p.x, q.x) + pad;
         var oy = Math.min(p.y + p.h, q.y + q.h) - Math.max(p.y, q.y) + pad;
         if (ox > 0 && oy > 0) {
-          var wp = p.hold ? 0 : (q.hold ? 1 : 0.5), wq = 1 - wp;
+          var wp = (p.hold || p.dragging) ? 0 : ((q.hold || q.dragging) ? 1 : 0.5);
+          var wq = 1 - wp;
           if (ox < oy) {
             var sx = (p.x + p.w / 2 < q.x + q.w / 2) ? -1 : 1;
             p.x += sx * ox * wp; q.x -= sx * ox * wq;
@@ -1065,9 +1176,11 @@ h1 span { color: var(--accent); }
       }
     }
     fish.forEach(function (f) {
-      f.x = Math.max(0, Math.min(W - f.w, f.x));
-      f.y = Math.max(0, Math.min(H - f.h, f.y));
-      draw(f);
+      if (!f.dragging) {
+        f.x = Math.max(0, Math.min(W - f.w, f.x));
+        f.y = Math.max(0, Math.min(H - f.h, f.y));
+        draw(f);
+      }
     });
     requestAnimationFrame(step);
   }
